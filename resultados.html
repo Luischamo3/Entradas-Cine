@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resultado de votaciones</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <div class="center-align">
+            <a class=" waves-effect waves-light btn " href="index.html">Inicio</a>
+
+        </div>
+        <div class="center-align">
+            <h3 tabindex="0">Resultados votacion</h3>
+
+        </div>
+        <div class="center-align">
+            <button tabindex="0" aria-label="Ver resultados como gráfico de barras" class="waves-effect waves-light btn" onclick="drawChart(0)">
+                <i class="material-icons left">insert_chart</i>Chart</button>
+            <button tabindex="0" aria-label="Ver resultados en forma de Donut"  class="waves-effect waves-light btn" onclick="drawChart(1)">
+                <i class="material-icons left">donut_large</i>Donut</button>
+            <button tabindex="0" aria-label="Ver resultados en forma de pizza"  class="waves-effect waves-light btn" onclick="drawChart(2)">
+                <i class="material-icons left">donut_small</i>Tarta</button>
+
+        </div>
+<br>
+        <div id="chart_div" tabindex="0" aria-live="polite" class="scale-transition scale-in z-depth-5 "></div>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script src="js/data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
