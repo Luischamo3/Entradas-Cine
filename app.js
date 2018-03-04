@@ -3,8 +3,7 @@ var lista = new Array();
 var n = "";
 var obj = new Object();
 
-$(document).ready(function () {
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+$(document).ready(function () {    
     $('.modal').modal();
 });
 
@@ -91,12 +90,7 @@ function guardarReserva() {
             }
             reservas.push(obj);
         }
-
-        // console.log(reservas);
-        // reserva.asientos = asientosReservadosInformacion;
-        localStorage.setItem("reservas", JSON.stringify(reservas));
-        // localStorage.setItem("sesionActual", JSON.stringify(reserva));
-
+        localStorage.setItem("reservas", JSON.stringify(reservas));    
 
     }
 }
@@ -187,10 +181,7 @@ function loadPage() {
     for (let indexF = 0, y = 10, id = 0; indexF < 5; indexF++ , y += 600) {
         for (let indexB = 0, x = 10; indexB < 16; indexB++ , x += 600, id++) {
             var svgns = "http://www.w3.org/2000/svg";
-            var xlinkns = "http://www.w3.org/1999/xlink";
-            // var estado = "";
-
-            // index % 2 == 0 ? estado = "ocupado" : estado = "libre";
+            var xlinkns = "http://www.w3.org/1999/xlink";           
 
             var use = document.createElementNS(svgns, "use");
             use.setAttributeNS(xlinkns, "href", "#asiento");
@@ -203,20 +194,13 @@ function loadPage() {
             use.setAttribute("style", "stroke: #2B2A29;stroke-width: 150;fill: white;");
             use.setAttribute("id", id);
             use.addEventListener("click", cambiar, false);
-
-
-            // use.setAttribute("estado", estado);
-            // estado == "ocupado" ? use.setAttribute("class", "copa ocupado") : use.setAttribute("class", "copa noSelected");
-            // use.addEventListener("click", cambiar, false);
-
             cont.appendChild(use);
         }
     }
 
     var li = $('.slides').find('li');
 
-    arr.forEach(function (e) {
-        $('.materialboxed').materialbox();
+    arr.forEach(function (e) {       
         //Lista de Carteles
         var principal = $('<div class="col s6 m4 l3  center-align carta"></div>');
         var card = $(' <div class="card hoverable" id="carta" ></div>');
@@ -238,27 +222,21 @@ function loadPage() {
 }
 
 
-
 function createTab(id, elemento) {
-
     $("#idPeliculaActual").val(id);
-    var idsave = id;    /*Progreso Formulario*/
+    var idsave = id;   
     $('.tab').removeClass('scale-out');
     $('.card-image').removeClass('imgactive');
     $('.card-image').addClass('imghover');
 
     $('#day').empty();
-    //    $('.card').addClass('z-depth-5');
+    
     $(peliculas).each(function (i, element) {
-        // cleanTab('#change');
-        console.log(element.hora);
-
         if (idsave == element.id) {
             $(elemento).removeClass('imghover');
             $(elemento).addClass('imgactive');
 
             cleanTab('datapeli');
-            // cleanTab('f');
 
             var principal = $(`
          <div class="col s12 center-align ">
@@ -275,16 +253,10 @@ function createTab(id, elemento) {
             //Carga del Select
 
             element.horas.forEach(e => {
-
-                console.log(e);
-
-                // var option = $('#day').find('option').next().text(e.dia);
-
                 var option = document.createElement("option");
                 option.innerText = e.dia;
                 option.value = e.dia;
                 document.getElementById("day").appendChild(option);
-
             });
 
             $('select').material_select(function () {             //Carga Checkbox
@@ -315,15 +287,9 @@ function createTab(id, elemento) {
             });
 
             //Efecto de Pestaña           
-            $('.tab').append(principal)
-                //  .removeClass('scale-out')
+            $('.tab').append(principal)                
                 .addClass('scale-in').delay(5500);
             $('.indicator').delay(1000).fadeIn('slow');
-            // .attr('style',`background-image:url(${element.src});`);
-
-            // $('.formulario').append(formulario)
-            //     .addClass('scale-in').delay(5500).fadeIn('slow');
-            // removeClass('scale-out');
         }
 
     });
@@ -360,146 +326,6 @@ function paginate(options) {
 }
 
 
-// function videoHover(element) {
-//     // $(arr).each(function (i, element) {
-//     if (element.click(() => {
-//         var myNode = document.getElementById("change");
-//         while (myNode.firstChild) {
-//             myNode.removeChild(myNode.firstChild);
-//         }
-//         var vhover = $(`<div class="video-container  " controls>
-//         <iframe id="video" width="225" height="329" src="https://www.youtube.com/embed/${element.url}" frameborder="0" allow="autoplay allowfullscreen></iframe>
-//      </div>`);
-//         $('.card').append(vhover);
-//     }));
-
-// }
-
-// function setLocalStorageIdPelicula(id) {
-//     var obj = { id: id };
-//     localStorage.setItem('idPelicula', JSON.stringify(obj));
-// }
-
-// Tarjeta Segunda Página
-// function loadMovie() {
-//     var idsave = JSON.parse(localStorage.getItem('idPelicula'));
-//     var titulo = peliculas[idsave.id].nombre;
-//     var video = peliculas[idsave.id].url;
-//     var src = peliculas[idsave.id].src;
-//     var sinopsis = peliculas[idsave.id].sinopsis;
-//     document.getElementById('titulo').innerText = titulo;
-//     document.getElementById('video').setAttribute('src', 'https://www.youtube.com/embed/' + video);
-//     document.getElementById('imagen').setAttribute('src', src);
-//     document.getElementById('imagen').setAttribute('style', 'width:80%');
-//     document.getElementById('sinopsis').innerText = sinopsis;
-// }
 
 
-
-// google.charts.load("current", { packages: ["corechart"] });
-// google.charts.setOnLoadCallback(drawChart);
-
-// function drawChart(index) {
-//     // Create the data table.
-//     var data = new google.visualization.DataTable();
-//     data.addColumn('string', 'Topping');
-//     data.addColumn('number', 'Votos');
-//     var peliculas = JSON.parse(localStorage.getItem('peliculas'));
-
-//     peliculas.forEach(element => {
-//         // console.log(element);
-//         data.addRows([
-//             [element.nombre, element.votos]
-//         ]);
-//     });
-
-//     if (index == 0) {
-//         var options = {
-//             title: 'Resultados votacion',
-//             'width': 800,
-//             'height': 500,
-//             chartArea: { width: '60%' },
-//             hAxis: {
-//                 title: 'Pelicula',
-//                 minValue: 0,
-//                 maxValue: 20
-//             },
-//             vAxis: {
-//                 title: 'Votos'
-//             }
-//         };
-
-//         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-//         chart.draw(data, options);
-//     } else if (index == 1) {
-//         // Set chart options
-//         var options = {
-//             'title': 'Resultados votacion',
-//             'width': 800,
-//             'height': 500,
-//             pieHole: 0.4,
-
-//         };
-
-
-//         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-//         chart.draw(data, options);
-//     } else if (index == 2) {
-//         // Set chart options
-//         var options = {
-//             'title': 'Resultados votacion',
-//             'width': 800,
-//             'height': 500,
-//             is3D: true,
-//         };
-
-//         // Instantiate and draw our chart, passing in some options.
-//         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-//         chart.draw(data, options);
-//     }
-
-//     document.getElementById("char_div").focus();
-// }
-
-
-function saveVote() {
-    /// pasar el id de la pelicula al registro
-    var idsave = JSON.parse(localStorage.getItem('idPelicula')).id;
-    /// en el registro crear objeto usuario y guardarlo en localstorage
-
-    // recoger el nombre
-    var nombre = document.getElementById('nombre').value;
-    var apellido = document.getElementById('apellido').value;
-    var telefono = document.getElementById('telefono').value;
-    var email = document.getElementById('email').value;
-
-    var usuario = {
-        nombre: nombre,
-        apellido: apellido,
-        telefono: telefono,
-        email: email,
-        voto: idsave
-    }
-
-    /// mirar si existe el array de usuarios en local storage?
-    var usuarios = JSON.parse(localStorage.getItem('usuarios'));
-    if (usuarios == null) {
-        usuarios = [];
-    }
-
-    usuarios.push(usuario);
-
-    localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
-    var peliculas = JSON.parse(localStorage.getItem('peliculas'));
-
-    peliculas.forEach(element => {
-        if (element.id == idsave) {
-            element.votos++;
-        }
-    });
-    localStorage.setItem('peliculas', JSON.stringify(peliculas));
-
-
-}
 
